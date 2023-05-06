@@ -3,6 +3,7 @@ package com.ssn.controller;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,7 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssn.PlayLoad.ListResponse;
+import com.ssn.common.User;
+import com.ssn.dto.User2Dto;
 import com.ssn.dto.UserDto;
+import com.ssn.dto.UserJobsCategoryDto;
 import com.ssn.serviceimpl.UserServiceImpl;
 
 @RestController
@@ -24,7 +28,6 @@ import com.ssn.serviceimpl.UserServiceImpl;
 public class UserController {
 	@Autowired
 	UserServiceImpl userServiceImpl;
-	
 	@GetMapping
 	public ListResponse<UserDto> getAllUsers(){
 		System.out.println("Get All ");
@@ -68,6 +71,17 @@ public class UserController {
 	@PatchMapping("/{id}")
 	public UserDto updateUser( @RequestBody UserDto userDto, @PathVariable(value = "id") Long id) throws Exception {
 		return userServiceImpl.update(userDto, id);
+	}
+	
+	@GetMapping("/getuserdata")
+	public User2Dto userData( @RequestParam(value = "courseType") String courseType) throws Exception {
+  		return userServiceImpl.getUserCourse(courseType);
+	}
+	
+	@GetMapping("getuserjobs")
+	public  List<UserDto>  userJobs( @RequestParam(value = "job_name") String job_name) throws Exception {
+		System.out.println("Job_________Name :: "+ job_name);
+  		return userServiceImpl.getUserJobsAndTraining( job_name);
 	}
 
 }

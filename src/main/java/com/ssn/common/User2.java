@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,7 +22,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "user")
 
-public class User {
+public class User2 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
@@ -40,39 +39,17 @@ public class User {
 	private String cPass;
 	@Column(name = "USER_GENDER")
 	private String gender;
-//	@ToString.Exclude
-//	@JoinColumn(name = "CITY_ID", referencedColumnName = "ID")
-//	@ManyToOne(cascade = CascadeType.PERSIST)
-//	private City city;
-	@OneToMany(mappedBy = "user_id", cascade = CascadeType.ALL)
-	// ,cascade = CascadeType.ALL)
-//	@ToString.Exclude
-	// @JsonBackReference
-//	@JsonManagedReference
-	private Set<CVBuilder> user_id;
+ 
 
 	@ManyToMany
 	@ToString.Exclude
 	@JoinTable(name = "course_bk", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "ID"))
 	List<UserCourse> userCourse;
-
-	@ManyToMany
-	@ToString.Exclude
-	@JoinTable(name = "class_bk", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "class_id", referencedColumnName = "ID"))
-	List<UserClass> userClass;
-
-	@ManyToMany
-	@ToString.Exclude
-	@JoinTable(name = "skills_bk", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "ID"))
-	List<UserSkills> userSkills;
-
-	@ManyToMany
-	@ToString.Exclude
-	@JoinTable(name = "online_bk", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "online_id", referencedColumnName = "ID"))
-	List<UserOnlineCourses> onlineCourse;
-
-	@JoinColumn(name = "USER_JOBS_CAT_ID", referencedColumnName = "ID")
-	@ManyToOne(optional = false)
-	private UserJobsCategory userJobsCatId;
+	
+	 
+	
+	
+	 
+ 
 
 }

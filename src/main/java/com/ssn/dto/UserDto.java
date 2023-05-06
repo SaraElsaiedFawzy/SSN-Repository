@@ -1,10 +1,10 @@
 package com.ssn.dto;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.ssn.common.CVBuilder;
+import com.ssn.common.User;
+import com.ssn.common.UserJobsCategory;
 
+import java.util.*;
 import lombok.Data;
 
 @Data
@@ -17,7 +17,12 @@ public class UserDto {
 	private String nPass;
 	private String cPass;
 	private String gender;
-	//private Long cityId;
-	//private CVBuilder user_id;
+	private List<UserCourseDto> userCourse;
+	private List<UserClassDto> userClass;
+	private List<UserSkillsDto> userSkills;
+	private List<UserOnlineCoursesDto> onlineCourse;
+	private UserJobsCategoryDto userJobsCatId;
+//	private Long cityId;
+//	private CVBuilder user_id;
 
 }
